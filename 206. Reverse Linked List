@@ -1,0 +1,28 @@
+Iterative:
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        curr = head
+        prev = None
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        return prev
+        
+Time: O(n), space: O(1)   
+
+
+Recursive:
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
+        prev = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return prev
+
+Time: O(n), space: O(n) 
