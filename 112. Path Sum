@@ -1,0 +1,17 @@
+class Solution:
+    def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:
+        if not root:
+            return
+        stack = [(root,targetSum - root.val)]
+        while stack:
+            curr,curr_sum = stack.pop()
+            if not curr.left and not curr.right and curr_sum == 0:
+                return True
+            if curr.left:
+                stack.append((curr.left,curr_sum-curr.left.val))
+            if curr.right:
+                stack.append((curr.right,curr_sum - curr.right.val))
+                
+        return False
+            
+ Time: O(n), space: O(n)
