@@ -1,0 +1,32 @@
+class Solution:
+    def minDepth(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        res = float('inf')
+        stack = [(root,1)]
+        while stack:
+            curr,level = stack.pop()
+            if not curr.left and not curr.right:
+                res = min(res,level)
+            if curr.left:
+                stack.append((curr.left,level+1))
+            if curr.right:
+                stack.append((curr.right,level+1))
+        return res
+                
+  Time: O(n), space: O(n)
+  
+  
+  
+  
+  class Solution:
+    def minDepth(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        if not root.left and not root.right:
+            return 1
+        if root.left is None:
+            return self.minDepth(root.right) + 1
+        if root.right is None:
+            return self.minDepth(root.left) + 1
+        return min(self.minDepth(root.left),self.minDepth(root.right)) +1
